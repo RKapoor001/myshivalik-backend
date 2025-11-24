@@ -2,12 +2,15 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
+const upload = multer();
+
 
 // Import the User model
 const User = require("../models/User");
 
 // ✅ SIGNUP route
-router.post("/signup", async (req, res) => {
+router.post("/signup", upload.none(), async (req, res) => {
   try {
     const { name, classSection, password, image} = req.body;
 
